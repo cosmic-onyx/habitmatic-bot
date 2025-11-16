@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  telegram_bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    working_dir: /usr/app/src
+
+    command: bash -c 'python bot/run.py'
+
+  redis:
+    image: redis:latest
+    hostname: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
