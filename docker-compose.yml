@@ -9,14 +9,10 @@ services:
     working_dir: /usr/app/src
 
     command: bash -c 'python bot/run.py'
+    networks:
+      - habit_network
 
-  redis:
-    image: redis:latest
-    hostname: redis
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-
-volumes:
-  redis_data:
+networks:
+  habit_network:
+    external: true
+    name: habit_network
